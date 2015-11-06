@@ -1,0 +1,5 @@
+<h1>Listing Posts</p>
+  <% @post.each do |p| %>
+    <h3><%= link_to p.title, post_path(p) %>
+    <hr>
+  <% end %>
