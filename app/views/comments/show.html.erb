@@ -1,0 +1,6 @@
+<h1>Show Comment</h1>
+<div>
+<h3><%= @comment.body %></h3>
+</div>
+<%= link_to "Edit", edit_comment_path(@comment), class: "btn btn-primary" %>
+<%= link_to "Delete", comment_path(@comment), method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-danger" %>
