@@ -2,16 +2,17 @@
 <html>
 <head>
   <title>BlogApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'external', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="landing-pg">
 <%= link_to "Home", root_path %> |
 <%= link_to "About", about_home_path %> |
-<%= link_to "Posts", posts_path %> 
-<%#= link_to "Comments", post_comments_path %> |
+<%= link_to "Posts", posts_path %>
 <br><%= notice || alert %>
+</div>
 <%= yield %>
 </body>
 </html>

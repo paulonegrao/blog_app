@@ -1,1 +1,7 @@
+<div class="landing-pg">
 <h1>Welcome to the Blog</h1>
+  <p>Well... this is a Blog app to, let's say... get stuff bloged...</p>
+  <p><% 3.times do %>
+      <p><%=  Faker::Lorem.paragraphs(3).join %></p>
+    <% end %>
+</div>

@@ -1,7 +1,34 @@
 <h1>Show Post</h1>
-<div>
-<h3>Title:<%= " #{@post.title}" %></h3>
-  <p><%= @post.body %></p>
+<div class="container">
+<h3>Subject:<%= " #{@post.title}" %></h3>
+  <div class="well">
+      <%= @post.body %>
+      <div class="pull-right">
+      <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary"%>
+      <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      </div>
+      <p style="font-size:65%; color:rgba(0, 0, 0, 0.39);">ceated in:&nbsp;<%= "#{@post.created_at}"%></p>
+  </div>
+
+  <h3>Your Comment</h3>
+  <div class="form-group">
+    <%= form_for [@post, @comment] do |f| %>
+    <div class="input-group">
+      <%= f.text_area :body, class: "form-control", placeholder: "Enter your Comment here", aria_describedby: "basic-addon1"%>
+      <span class="input-group-addon" id="basic-addon1">
+      <%= f.submit class: "btn btn-primary pull-right" %></span>
+    </div>
+    <% end %>
+  </div>
+  <% if @post_comments.length > 0 %>
+    <h3>All Comments</h3>
+      <% @post_comments.each do |comment| %>
+      <div class="well">
+          <%= comment.body %>
+            <%= link_to "Delete", post_comment_path(@post, comment), method: :delete,
+                                data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"%>
+          <p style="font-size:65%; color:rgba(0, 0, 0, 0.39);">ceated in:&nbsp;<%= "#{comment.created_at}" %></p>
+      </div>
+      <% end %>
+  <% end %>
 </div>
-<%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" %>
-<%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-danger" %>

@@ -19,7 +19,11 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @post = Post.find params[:id]
+    # @post.comments.sort { |a,b| a.created_at <=> b.created_at }
+    # using database command instead to speed up
+    @post_comments = @post.comments.order(created_at: :DESC)
   end
 
   def edit

@@ -9,12 +9,14 @@ class CommentsController < ApplicationController
     end
 
     def create
+      @post = Post.find params[:post_id]
       comment_params = params.require(:comment).permit(:title, :body)
       @comment = Comment.new comment_params
+      @comment.post = @post
       if @comment.save
-        redirect_to comment_path(@comment), notice: "Comment created successfully"
+        redirect_to post_path(@post), notice: "Comment created successfully"
       else
-        render :new
+        render "posts/show"
       end
     end
 

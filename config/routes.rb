@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   root "home#index"
   get "/about"                  => "home#about", as: :about_home
 
-  resources :posts
-  resources :comments
+  resources :posts do
+    resources :comments
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.
