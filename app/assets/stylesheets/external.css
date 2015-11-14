@@ -9,4 +9,9 @@ h1 {
 .landing-pg {
   font-family: fantasy;
   color: rgba(46, 82, 4, 0.54);
+
+  padding-right: 150px;
+  padding-left: 150px;
+  margin-right: auto;
+  margin-left: auto;
 }

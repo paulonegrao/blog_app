@@ -7,11 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= link_to "Home", root_path %> |
-<%= link_to "About", about_home_path %> |
-<%= link_to "Posts", posts_path %> 
-<%#= link_to "Comments", post_comments_path %> |
-<br><%= notice || alert %>
-<%= yield %>
+  <div class="container">
+    <%= link_to "Home", root_path %> |
+    <%= link_to "About", about_home_path %> |
+    <%= link_to "Posts", posts_path %> |
+    <%= link_to "Sign In", new_session_path %> 
+    <br><%= notice || alert %>
+    <%= yield %>
+  </div>
 </body>
 </html>
