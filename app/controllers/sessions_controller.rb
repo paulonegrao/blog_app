@@ -6,7 +6,9 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path, notice: "Loged in"
     else
-      render :new, alert: "Invalid credentials"
+      flash[:alert] = "Invalid credentials"
+      render :new
     end
   end
+
 end
