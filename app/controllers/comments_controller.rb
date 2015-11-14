@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     def create
       @post = Post.find params[:post_id]
       comment_params = params.require(:comment).permit(:title, :body)
-      @comment = Comment.new comment_params
+      @comment = current_user.comments.new comment_params
       @comment.post = @post
       if @comment.save
         redirect_to post_path(@post), notice: "Comment created successfully"
@@ -29,10 +29,10 @@ class CommentsController < ApplicationController
     end
 
     def update
-      comment_params = params.require(:comment).permit(:title, :body)
+      comment_params = params.require(:comment).permit(:body)
       @comment = Comment.find params[:id]
-      if @comment.save
-        redirect_to comment_path(@comment) , notice: "Comment updated successfully"
+      if @comment.update(comment_params)
+        redirect_to post_path(@comment.post), notice: "Comment updated successfully"
       else
         render :edit
       end
@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
     def destroy
       @comment = Comment.find params[:id]
       @comment.destroy
-      redirect_to comments_path, notice: "Comment deleted successfully"
+      redirect_to post_path(@comment.post), notice: "Comment deleted successfully"
     end
 
 

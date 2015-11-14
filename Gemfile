@@ -38,6 +38,7 @@ group :development, :test do
   gem "hirb"
   gem "faker"
   gem "awesome_print"
+  gem 'cancancan', '~> 1.10'
 end
 
 group :development do

@@ -1,6 +1,6 @@
 <h1>Editing Comment</h1>
 <%= @comment.errors.full_messages.join(", ") %>
-<%= form_for @comment do |f| %>
+<%= form_for [@comment.post, @comment] do |f| %>
   <div class="form-group">
     <%= f.label :body %>
     <%= f.text_area :body, class: "form-control" %>

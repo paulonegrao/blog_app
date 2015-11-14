@@ -4,8 +4,12 @@
   <div class="well">
       <%= @post.body %>
       <div class="pull-right">
-      <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary"%>
-      <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        <% if can? :edit, @post %>
+          <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary"%>
+        <% end %>
+        <% if can? :destroy, @post %>
+          <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-danger" %>
+        <% end %>
       </div>
       <p style="font-size:65%; color:rgba(0, 0, 0, 0.39);">ceated in:&nbsp;<%= "#{@post.created_at}"%></p>
   </div>
@@ -20,14 +24,23 @@
     </div>
     <% end %>
   </div>
-  <% if @post_comments.length > 0 %>
+  <% if @post_comments %>
     <h3>All Comments</h3>
       <% @post_comments.each do |comment| %>
       <div class="well">
           <%= comment.body %>
-            <%= link_to "Delete", post_comment_path(@post, comment), method: :delete,
-                                data: {confirm: "Are you sure?"}, class: "btn btn-danger pull-right"%>
-          <p style="font-size:65%; color:rgba(0, 0, 0, 0.39);">ceated in:&nbsp;<%= "#{comment.created_at}" %></p>
+          <div class="pull-right">
+            <% if can? :edit, comment %>
+              <%= link_to "Edit", edit_post_comment_path(@post, comment),
+                                class: "btn btn-primary"%>
+            <% end %>
+            <% if can? :destroy, comment %>
+              <%= link_to "Delete", post_comment_path(@post, comment), method: :delete,
+                                data: {confirm: "Are you sure?"}, class: "btn btn-danger"%>
+            <% end %>
+          </div>
+          <p style="font-size:65%; color:rgba(0, 0, 0, 0.39);">
+            created by<%= " #{} " %>in<%= " #{comment.created_at}" %></p>
       </div>
       <% end %>
   <% end %>

@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authorize, only: [:edit, :update, :destroy]
+
   before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -10,6 +12,8 @@ class PostsController < ApplicationController
   end
 
   def create
+    @post = Post.new(post_params)
+    @post.user = current_user
     if @post.save
       redirect_to post_path(@post), notice: "Post created successfully"
     else
@@ -40,14 +44,18 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: "Post deleted successfully"
   end
 
-end
-
 private
 
-def post_params
-  post_params = params.require(:post).permit(:title, :body)
-end
+  def post_params
+    post_params = params.require(:post).permit(:title, :body)
+  end
 
-def find_post
-  @post = Post.find params[:id]
+  def find_post
+    @post = Post.find params[:id]
+  end
+
+  def authorize
+     redirect_to root_path, alert: "Access denied!" unless can? :manage, @p
+  end
+
 end
