@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments, only: [:new, :create, :edit, :update, :destroy]
+
+    resources :likes, only: [:create, :destroy]
   end
 
   resources :users, only: [:new, :create]
@@ -12,5 +14,6 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy] do
     delete :destroy, on: :collection
   end
+
 
 end

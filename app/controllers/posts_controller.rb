@@ -4,11 +4,16 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @post = Post.all
+    @favorites = params[:favorites]
+    if @favorites.present?
+      @post = current_user.liked_posts
+    else
+      @post = Post.all
+    end
   end
 
   def new
-    @post = Post.new
+      @post = Post.new
   end
 
   def create

@@ -10,15 +10,17 @@
   <div class="container">
     <%= link_to "Home", root_path %> |
     <%= link_to "About", about_home_path %> |
-    <%= link_to "Posts", posts_path %> |
-
-    <% if user_signed_in? %>
-          Hello <%= current_user.first_name %> <%= current_user.last_name %>!
-          <%= link_to "Log Out", sessions_path, method: :delete %>
-    <% else %>
-          <%= link_to "Sign In", new_session_path %> |
-          <%= link_to "Sign Up", new_user_path %>
-    <% end %>
+    <%= link_to "Posts", posts_path %>
+    <div class="pull-right">
+      <% if user_signed_in? %>
+            <%= link_to "Log Out", sessions_path, method: :delete %>
+            Hello <%= current_user.first_name %> <%= current_user.last_name %>!
+            <%= link_to " Your Favorites", posts_path(:favorites => "Favorite")%>
+      <% else %>
+            <%= link_to "Sign In", new_session_path %> |
+            <%= link_to "Sign Up", new_user_path %>
+      <% end %>
+    </div>
     <br>
     <%= notice || alert %>
     <%= yield %>
