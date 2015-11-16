@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+#### seeding "tags" table
+#tags = ["sports", "internet", "music", "movies", "pyjamas", "trips", "mix"]
+
+
+tags = ["science", "programming", "cats", "pyjamas", "gems"]
+
+tags.each do |tag|
+  Tag.create(name: tag)
+end

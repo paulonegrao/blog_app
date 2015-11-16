@@ -4,13 +4,13 @@ class Ability
   def initialize(user)
     user ||= User.new
 
-  can :manage, Post do |p|
-     user == p.user
-  end
+    can :manage, Post do |p|
+      user == p.user
+    end
 
-  can :manage, Comment do |c|
-     user == c.user
-  end
+    can :manage, Comment do |c|
+      user == c.user
+    end
 
     # Define abilities for the passed in user here. For example:
     #

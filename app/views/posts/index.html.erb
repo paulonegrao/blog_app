@@ -1,4 +1,4 @@
-<h1>Listing<%= " #{@favorites} " %> Posts</p>
+<h1>Listing<%= " #{@favorite} " %> Posts</p>
   <% @post.each do |p| %>
     <h3><%= link_to p.title, post_path(p) %>
     <hr>

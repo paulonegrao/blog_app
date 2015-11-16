@@ -1,11 +1,13 @@
 class PostsController < ApplicationController
-  before_action :authorize, only: [:edit, :update, :destroy]
+  before_action :authenticate_user, except: [:index, :show]
 
   before_action :find_post, only: [:show, :edit, :update, :destroy]
 
+  before_action :authorize, only: [:edit, :update, :destroy]
+
   def index
-    @favorites = params[:favorites]
-    if @favorites.present?
+    @favorite = params[:favorite]
+    if @favorite.present?
       @post = current_user.liked_posts
     else
       @post = Post.all
@@ -17,8 +19,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-    @post.user = current_user
+    @post       = Post.new(post_params)
+    @post.user  = current_user
     if @post.save
       redirect_to post_path(@post), notice: "Post created successfully"
     else
@@ -34,6 +36,8 @@ class PostsController < ApplicationController
   end
 
   def edit
+    logger.debug "edit......."
+    redirect_to root_path, alert: "Access denied." unless can? :edit, @post
   end
 
   def update
@@ -52,7 +56,7 @@ class PostsController < ApplicationController
 private
 
   def post_params
-    post_params = params.require(:post).permit(:title, :body)
+    post_params = params.require(:post).permit([:title, :body, {tag_ids: []}])
   end
 
   def find_post
@@ -60,7 +64,8 @@ private
   end
 
   def authorize
-     redirect_to root_path, alert: "Access denied!" unless can? :manage, @p
+    logger.debug "auth......."
+     redirect_to root_path, alert: "Access denied!" unless can? :manage, @post
   end
 
 end
