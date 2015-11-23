@@ -1,10 +1,10 @@
 <h1>About this Blog</h1>
 <div class="media">
     <div class="media-right">
-      <img class="media-object img-circle" src="<%= asset_path 'me.jpg' %>" />
+      <img id="avatar" class="media-object img-circle" src="<%= asset_path 'me.jpg' %>" />
     </div>
     <div class="media-body">
-      <p>I don't really now what this Blog will look like for now... I'm just filling up something here to make a starting point</p>
+      <p>I don't really now what this Blog will look like by now... I'm just filling up something here to make a starting point</p>
       <h2 class="media-heading">So let's continue...</h2>
       <% 5.times do %>
       <p><%= Faker::Lorem.paragraphs(5).join %></p>

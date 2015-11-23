@@ -42,6 +42,8 @@ group :development, :test do
   gem "faker"
   gem "awesome_print"
   gem 'cancancan', '~> 1.10'
+  gem "quiet_assets"
+  gem "letter_opener"
 end
 
 group :development do

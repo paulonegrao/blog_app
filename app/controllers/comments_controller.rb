@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
       @comment = current_user.comments.new comment_params
       @comment.post = @post
       if @comment.save
+        CommentsMailer.notify_post_owner(@comment).deliver_now
         redirect_to post_path(@post), notice: "Comment created successfully"
       else
         render "posts/show"

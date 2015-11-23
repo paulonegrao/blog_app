@@ -1,20 +1,26 @@
-// Place all the styles related to the posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-.created-by {
-  font-size: 65%;
-  color:rgba(0, 0, 0, 0.39);
+/*
+This file has to be registered in config/initializers/assets.rb
+*= require_self
+*/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+h1 {
+  background: rgb(89, 139, 93);
+  color: white;
 }
-.icon-big {
-  font-size: 32px;
+.landing-pg {
+  font-family: fantasy;
+  color: rgba(46, 82, 4, 0.54);
+
+  padding-right: 150px;
+  padding-left: 150px;
+  margin-right: auto;
+  margin-left: auto;
 }
-.label_check_boxes label {
-  margin-left: 5px;
-  margin-right: 25px;
-}
-$bgDefault      : #9e9ae1;
-$bgHighlight    : #4d2abf;
-$colDefault     : #eeeef7;
+$bgDefault      : #598b5d;
+$bgHighlight    : #33b636;
+$colDefault     : #dbf0e5;
 $colHighlight   : #ffffff;
 $dropDown       : false;
 .navbar-default {

@@ -13,5 +13,5 @@
  *= require_tree .
  *= require_self
  *= require font-awesome
- //= stub external
+ //= stub external.scss
  */

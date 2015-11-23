@@ -7,24 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container">
-    <%= link_to "Home", root_path %> |
-    <%= link_to "About", about_home_path %> |
-    <%= link_to "New Post", new_post_path %> |
-    <%= link_to "All Posts", posts_path %>
-    <div class="pull-right">
-      <% if user_signed_in? %>
-            <%= link_to "Log Out", sessions_path, method: :delete %>
-            Hello <%= current_user.first_name %> <%= current_user.last_name %>!
-            <%= link_to "Your Favorite", posts_path(:favorite => "Favorite")%>
-      <% else %>
-            <%= link_to "Sign In", new_session_path %> |
-            <%= link_to "Sign Up", new_user_path %>
-      <% end %>
+    <%= render "/layouts/nav" %>
+    <div class="container">
+      <%= notice || alert %>
+      <%= yield %>
     </div>
-    <br>
-    <%= notice || alert %>
-    <%= yield %>
-  </div>
 </body>
 </html>
