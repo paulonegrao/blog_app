@@ -15,5 +15,9 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
+  resources :categories do
+    resources :posts, only: [:index, :show]
+  end
+
 
 end

@@ -10,8 +10,15 @@
 #tags = ["sports", "internet", "music", "movies", "pyjamas", "trips", "mix"]
 
 
-tags = ["science", "programming", "cats", "pyjamas", "gems"]
+# tags = ["science", "programming", "cats", "pyjamas", "gems"]
+#
+# tags.each do |tag|
+#   Tag.create(name: tag)
+# end
 
-tags.each do |tag|
-  Tag.create(name: tag)
+categories = ["sport", "business", "academic", "leisure", "coding", "social"]
+categories.sort! {|a, b| a <=> b}
+
+categories.each do |cat|
+  Category.create(title: cat)
 end

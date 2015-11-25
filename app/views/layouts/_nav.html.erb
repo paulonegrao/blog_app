@@ -9,6 +9,9 @@
         <li class="<%= [about_home_path].include?(request.path) ? 'navlink open' : '' %>"><%= link_to "About".html_safe, about_home_path %></li>
       </ul>
       <ul class="nav navbar-nav">
+        <li class="<%= [categories_path].include?(request.path) ? 'navlink open' : '' %>"><%= link_to "Post".html_safe, categories_path %></li>
+      </ul>
+      <ul class="nav navbar-nav">
         <li class="<%= [root_path, posts_path, about_home_path].include?(request.path) ? '' : 'navlink open' %>"><%= link_to "New Post".html_safe, new_post_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

@@ -1,4 +1,5 @@
 class CommentsMailer < ApplicationMailer
+
   def notify_post_owner(comment)
     @comment   = comment
     @post = comment.post
@@ -7,4 +8,5 @@ class CommentsMailer < ApplicationMailer
       mail(to: @owner.email, subject: "You got a new comment!")
     end
   end
+
 end

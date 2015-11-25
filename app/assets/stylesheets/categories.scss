@@ -1,0 +1,56 @@
+// Place all the styles related to the categories controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+div.category-panel {
+    // padding-top: 1.5em;
+    height: 5em;
+    border-left: 1em solid #f9992e;
+    margin-bottom: 9px;
+
+    h2 {
+      margin-top: 0;
+      color: #888888;
+    }
+}
+
+div.post-group {
+  margin-bottom: 1em;
+}
+
+div.post-panel {
+  margin-left: 3em;
+  margin-bottom: 5px;
+
+  a {
+    color: #6d6d6d;
+    background: rgba(197, 132, 79, 0.07);
+    display: block;
+    padding: 0.5em 0 0.5em 1em;
+  }
+
+  a:hover {
+    background: rgb(236, 200, 171);
+    text-decoration: none;
+  }
+}
+
+a.post-link {
+  display: block;
+  padding-left: 1em;
+  height: 100%;
+  background: rgba(197, 132, 79, 0.07);
+  font-size: 2em;
+  padding-top: 0.4em;
+  color: #6D6D6D;
+
+  span {
+    background: #ffd714;
+    color: #6D6D6D;
+  }
+
+}
+
+a.post-link:hover {
+  background: rgb(236, 200, 171);
+  text-decoration: none;
+}

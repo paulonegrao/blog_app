@@ -15,14 +15,17 @@ class PostsController < ApplicationController
   end
 
   def new
+      @category = Category.all
       @post = Post.new
   end
 
   def create
+    @category = Category.find(params[:selected_category])
     @post       = Post.new(post_params)
+    @post.category = @category
     @post.user  = current_user
     if @post.save
-      redirect_to post_path(@post), notice: "Post created successfully"
+      redirect_to categories_path, notice: "Post created successfully"
     else
       render :new
     end
@@ -36,7 +39,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    logger.debug "edit......."
+    @category = Category.all
     redirect_to root_path, alert: "Access denied." unless can? :edit, @post
   end
 
@@ -50,7 +53,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_path, notice: "Post deleted successfully"
+    redirect_to categories_path, notice: "Post deleted successfully"
   end
 
 private
@@ -65,7 +68,7 @@ private
 
   def authorize
     logger.debug "auth......."
-     redirect_to root_path, alert: "Access denied!" unless can? :manage, @post
+     redirect_to categories_path, alert: "Access denied!" unless can? :manage, @post
   end
 
 end

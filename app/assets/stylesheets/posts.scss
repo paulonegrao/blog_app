@@ -12,9 +12,9 @@
   margin-left: 5px;
   margin-right: 25px;
 }
-$bgDefault      : #9e9ae1;
-$bgHighlight    : #4d2abf;
-$colDefault     : #eeeef7;
+$bgDefault      : #ecc8ab;
+$bgHighlight    : #f9992e;
+$colDefault     : #ffffff;
 $colHighlight   : #ffffff;
 $dropDown       : false;
 .navbar-default {
@@ -74,4 +74,54 @@ $dropDown       : false;
       > a, > a:hover, > a:focus {
         color: $colHighlight;
         background-color: $bgHighlight; }}}
+}
+
+///////////////////////////////
+
+
+div.navbar-padding {
+  margin-bottom: 75px;
+}
+
+.flash-box {
+    padding: 15px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.flash-box.warning {
+  border-left: 8px solid #ffd714;
+}
+
+.flash-box.notice {
+  border-left: 8px solid #87cb00;
+}
+
+textarea#post_code  {
+  height: 20em;
+}
+
+.padded {
+  margin: 0.75em;
+}
+
+.btn-danger {
+  border: none;
+  background-color: #87cb00;
+}
+
+.btn-danger:hover {
+  background-color: #a6ef13;
+}
+
+code {
+}
+
+// Hacks for the navbar popping higher on the mobile media query
+nav.navbar.navbar-default.navbar-fixed-top {
+  height: 52px;
+}
+
+.container-fluid{
+  height: 52px;
 }
