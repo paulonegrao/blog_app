@@ -17,6 +17,10 @@ Bundler.require(*Rails.groups)
 
 module BlogApp
   class Application < Rails::Application
+
+    # Background Job's
+    config.autoload_paths << Rails.root.join('app', 'jobs')
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -31,5 +35,8 @@ module BlogApp
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Background Job's
+    config.active_job.queue_adapter = :delayed_job
   end
 end

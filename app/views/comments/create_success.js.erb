@@ -1,0 +1,4 @@
+<%# j method escapes Javascript which means it will put a \ before every " %>
+$("#comments").prepend("<%= j(render('/comments/comment', {comment: @comment})) %>");
+<% @comment = Comment.new %>
+$("#new_comment").replaceWith("<%= j render 'form' %>");

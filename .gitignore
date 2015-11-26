@@ -18,3 +18,6 @@
 
 # Ignore ENV's
 /config/initializers/app_keys.rb
+
+# Uploaded files
+/public/uploads

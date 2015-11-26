@@ -1,5 +1,8 @@
 class Post < ActiveRecord::Base
   belongs_to :category
+  
+  # Upload files
+  mount_uploader :image, ImageUploader
 
   validates :title, presence: true, uniqueness: true
 

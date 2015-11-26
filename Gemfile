@@ -29,6 +29,13 @@ gem 'bcrypt', '~> 3.1.7'
 #### PROJECT's GEMs ##################################################################################
 gem "font-awesome-rails"
 
+gem 'simple_form'
+
+# Upload files
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -44,6 +51,8 @@ group :development, :test do
   gem 'cancancan', '~> 1.10'
   gem "quiet_assets"
   gem "letter_opener"
+  gem 'delayed_job_active_record'
+	gem 'delayed_job_web'
 end
 
 group :development do

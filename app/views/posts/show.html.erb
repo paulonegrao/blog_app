@@ -1,8 +1,14 @@
-<h1>Show Post</h1>
-<div class="container">
-<h3>Subject:<%= " #{@post.title}" %></h3>
+<h3>show post</h3>
+<h4><%= " #{@post.title}" %></h4>
   <div class="well">
-      <%= @post.body %>
+      <% if @post.image.present? %>
+      <div align="center" style="background-color:black; margin-bottom: 10px;">
+        <%= image_tag @post.image.url(:strip), class: "img-responsive" %>
+      </div>
+      <% end %>
+      <div>
+        <%= @post.body %>
+      </div>
       <div class="pull-right">
         <% if can? :edit, @post %>
           <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary"%>
@@ -34,34 +40,15 @@
 <% end %>
 Liked: <%= pluralize(@post.likes.count, "time") %>
 
-  <h3>Your Comment</h3>
+  <h3>add a comment</h3>
   <div class="form-group">
-    <%= form_for [@post, @comment] do |f| %>
-    <div class="input-group">
-      <%= f.text_area :body, class: "form-control", placeholder: "Enter your Comment here", aria_describedby: "basic-addon1"%>
-      <span class="input-group-addon" id="basic-addon1">
-      <%= f.submit class: "btn btn-primary pull-right" %></span>
-    </div>
-    <% end %>
+    <%= render "/comments/form" %>
   </div>
   <% if @post_comments %>
-    <h3>All Comments</h3>
-      <% @post_comments.each do |comment| %>
-      <div class="well">
-          <%= comment.body %>
-          <div class="pull-right">
-            <% if can? :edit, comment %>
-              <%= link_to "Edit", edit_post_comment_path(@post, comment),
-                                class: "btn btn-primary"%>
-            <% end %>
-            <% if can? :destroy, comment %>
-              <%= link_to "Delete", post_comment_path(@post, comment), method: :delete,
-                                data: {confirm: "Are you sure?"}, class: "btn btn-danger"%>
-            <% end %>
-          </div>
-          <p class="created-by">
-            created by<%= " #{comment.user.first_name} #{comment.user.last_name} " %>in<%= " #{comment.created_at}" %></p>
+  <h3>comments</h3>
+      <div id="comments">
+          <% @post_comments.each do |comment| %>
+              <%= render "/comments/comment", comment: comment %>
+          <% end %>
       </div>
-      <% end %>
   <% end %>
-</div>

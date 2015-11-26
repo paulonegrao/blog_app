@@ -1,7 +1,18 @@
 class CategoriesController < ApplicationController
 
     def index
-      @category = Category.all.order("title ASC")
+      @favorite = params[:favorite]
+      if @favorite.present?
+        @post = current_user.liked_posts
+        @category = []
+        @post.each do |post|
+          cat       = Category.find post.category_id
+          @category << cat
+        end
+        @category.sort!
+      else
+        @category = Category.all.order("title ASC")
+      end
     end
 
     def new

@@ -6,11 +6,12 @@ class PostsController < ApplicationController
   before_action :authorize, only: [:edit, :update, :destroy]
 
   def index
+
     @favorite = params[:favorite]
     if @favorite.present?
       @post = current_user.liked_posts
     else
-      @post = Post.all
+      redirect_to categories_path
     end
   end
 
@@ -20,13 +21,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    @category = Category.find(params[:selected_category])
-    @post       = Post.new(post_params)
-    @post.category = @category
-    @post.user  = current_user
+    @category       = Category.find(params[:selected_category])
+    @post           = Post.new(post_params)
+    @post.category  = @category
+    @post.user      = current_user
     if @post.save
       redirect_to categories_path, notice: "Post created successfully"
     else
+      @category = Category.all
       render :new
     end
   end
@@ -44,7 +46,9 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.save(post_params)
+    @category = Category.find(params[:selected_category])
+    @post.category = @category
+    if @post.update(post_params)
       redirect_to post_path(@post) , notice: "Post updated successfully"
     else
       render :edit
@@ -59,7 +63,8 @@ class PostsController < ApplicationController
 private
 
   def post_params
-    post_params = params.require(:post).permit([:title, :body, {tag_ids: []}])
+    post_params = params.require(:post).permit([:title, :body, {tag_ids: []}, :image])
+
   end
 
   def find_post

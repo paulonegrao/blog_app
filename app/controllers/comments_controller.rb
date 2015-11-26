@@ -14,12 +14,18 @@ class CommentsController < ApplicationController
       comment_params = params.require(:comment).permit(:title, :body)
       @comment = current_user.comments.new comment_params
       @comment.post = @post
-      if @comment.save
-        CommentsMailer.notify_post_owner(@comment).deliver_now
-        redirect_to post_path(@post), notice: "Comment created successfully"
-      else
-        render "posts/show"
+
+      respond_to do |format|
+        if @comment.save
+          CommentsMailer.notify_post_owner(@comment).deliver_later
+          format.html { redirect_to post_path(@post), notice: "Comment created successfully" }
+          format.js { render :create_success }
+        else
+          format.html { render "posts/show" }
+          format.js   { render :create_failure }
+        end
       end
+
     end
 
     def show
@@ -41,9 +47,14 @@ class CommentsController < ApplicationController
     end
 
     def destroy
+
       @comment = Comment.find params[:id]
+      redirect_to root_path, alert: "Access denied!" unless can?(:destroy, @comment)
       @comment.destroy
-      redirect_to post_path(@comment.post), notice: "Comment deleted successfully"
+      respond_to do |format|
+        format.html {redirect_to post_path(@comment.post), notice: "Comment deleted successfully"}
+        format.js {render}
+      end
     end
 
 

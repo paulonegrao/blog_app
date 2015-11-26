@@ -1,4 +1,4 @@
-<h2>Categories</h2>
+<h3><%= @favorite ? "#{@favorite} by " : ""  %>Categories</h3>
 
   <% @category.each do |category| %>
     <div class="pull-right">
@@ -22,9 +22,14 @@
         data: { toggle: "collapse" } %>
     </div>
     <div class="post-group collapse" id='posts-for-<%= "#{url_cat}" %>'>
-      <% category.posts.each do |post| %>
+      <% if !@favorite.present? %>
+            <% @post = category.posts %>
+      <% end %>
+      <%  @post.each do |post| %>
         <div class="post-panel">
-          <%= link_to "#{post.title}".html_safe, category_post_path(category, post) %>
+          <span>
+            <%= link_to "#{image_tag post.image.url(:thumb), class: 'img-circle', width: '50', height: '50'} &nbsp;&nbsp; #{post.title}".html_safe, category_post_path(category, post) %>
+          </span>
         </div>
       <% end %>
     </div>
