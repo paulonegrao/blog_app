@@ -72,7 +72,6 @@ private
   end
 
   def authorize
-    logger.debug "auth......."
      redirect_to categories_path, alert: "Access denied!" unless can? :manage, @post
   end
 

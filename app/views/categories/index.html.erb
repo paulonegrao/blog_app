@@ -1,34 +1,41 @@
-<h3><%= @favorite ? "#{@favorite} by " : ""  %>Categories</h3>
+<h3><%= @favorite ? "#{@favorite.downcase} by " : ""  %>categories</h3>
 
   <% @category.each do |category| %>
-    <div class="pull-right">
+    <!-- <div class="pull-right">
         <ul class="nav navbar-nav">
-          <li><%= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe,
+          <li><%#= link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe,
            edit_category_path(category), title: 'Edit Category' %></li>
         </ul>
         <div class="pull-right">
             <ul class="nav navbar-nav">
-              <li><%= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe,
+              <li><%#= link_to '<span class="glyphicon glyphicon-trash"></span>'.html_safe,
                       category_path(category), method: :delete, data: {confirm: "Are you sure?"},
                       title: 'Delete Category' %></li>
             </ul>
         </div>
-    </div>
+    </div> -->
     <% url_cat = (category.id)%>
+    <% if !@favorite.present? %>
+          <% @post = category.posts %>
+    <% else %>
+          <% @post = current_user.liked_posts.where(['category_id = ?', category.id]) %>
+    <% end %>
     <div class="category-panel">
-      <%=  link_to "<span class='badge'> #{category.posts.count} </span> #{category.title}".html_safe,
+      <%=  link_to "<span class='badge'> #{@post.count} </span> #{category.title}".html_safe,
       "#posts-for-#{url_cat}",
       class: "post-link",
         data: { toggle: "collapse" } %>
     </div>
     <div class="post-group collapse" id='posts-for-<%= "#{url_cat}" %>'>
-      <% if !@favorite.present? %>
-            <% @post = category.posts %>
-      <% end %>
       <%  @post.each do |post| %>
         <div class="post-panel">
           <span>
-            <%= link_to "#{image_tag post.image.url(:thumb), class: 'img-circle', width: '50', height: '50'} &nbsp;&nbsp; #{post.title}".html_safe, category_post_path(category, post) %>
+            <% if post.image.url(:thumb) %>
+                  <% image_post = post.image.url(:thumb) %>
+            <% else %>
+                  <% image_post = asset_path 'thumb_default.png' %>
+            <% end %>
+            <%= link_to "#{image_tag image_post, class: 'img-circle', width: '50', height: '50'} &nbsp;&nbsp; #{post.title}".html_safe, category_post_path(category, post) %>
           </span>
         </div>
       <% end %>

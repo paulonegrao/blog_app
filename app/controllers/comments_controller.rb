@@ -34,16 +34,24 @@ class CommentsController < ApplicationController
 
     def edit
       @comment = Comment.find params[:id]
+      respond_to do |format|
+        format.js {render}
+      end
     end
 
     def update
       comment_params = params.require(:comment).permit(:body)
       @comment = Comment.find params[:id]
-      if @comment.update(comment_params)
-        redirect_to post_path(@comment.post), notice: "Comment updated successfully"
-      else
-        render :edit
+
+      respond_to do |format|
+        if @comment.update(comment_params)
+          format.html {redirect_to post_path(@comment.post), notice: "Comment updated successfully"}
+          format.js { render :update_success } 
+        else
+          render :edit
+        end
       end
+
     end
 
     def destroy

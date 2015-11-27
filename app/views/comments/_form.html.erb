@@ -1,3 +1,4 @@
+<div class="form-group" id="<%= dom_id(@comment) %>">
   <%= form_for [@post, @comment], remote: true do |f| %>
   <div class="input-group">
     <%= f.text_area :body, class: "form-control", placeholder: "enter your comment here", aria_describedby: "basic-addon1"%>
@@ -5,3 +6,4 @@
     <%= f.submit class: "btn btn-primary pull-right", data: {disable_with: "Saving..."} %></span>
   </div>
   <% end %>
+</div>

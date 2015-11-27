@@ -2,14 +2,8 @@ class CategoriesController < ApplicationController
 
     def index
       @favorite = params[:favorite]
-      if @favorite.present?
-        @post = current_user.liked_posts
-        @category = []
-        @post.each do |post|
-          cat       = Category.find post.category_id
-          @category << cat
-        end
-        @category.sort!
+      if  @favorite.present?
+          @category  = current_user.liked_categories.order("title ASC").uniq
       else
         @category = Category.all.order("title ASC")
       end

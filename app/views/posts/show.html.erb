@@ -18,17 +18,20 @@
         <% end %>
       </div>
       <p class="created-by">
-        created by<%= " #{@post.user.first_name} #{@post.user.last_name} " %>in<%= " #{@post.created_at}" %></p>
-  </div>
+        created by<%= " #{@post.user.first_name} #{@post.user.last_name} " %>
+                in<%= " #{@post.created_at.in_time_zone('Pacific Time (US & Canada)').strftime('%d.%m.%y at %I:%M%p')}" %></p>
+
 <%# TAGS ############################################# %>
+<table width="100%"><tr><td>
 <% if @post.tags.any? %>
   Tags:
   <% @post.tags.each do |tag| %>
     <div class="label label-primary"><%= tag.name %></div>
   <% end %>
 <% end %>
-
+</td>
 <%# LIKES ############################################ %>
+<td><div class="pull-right">
 <% if (user_signed_in? && @post.user_id != current_user.id) %>
   <% if user_signed_in? && @post.liked_by?(current_user) %>
     <%= link_to fa_icon("thumbs-up"), post_like_path(@post, @post.like_for(current_user)),
@@ -39,11 +42,12 @@
   <% end %>
 <% end %>
 Liked: <%= pluralize(@post.likes.count, "time") %>
+</div></td>
+</tr></table>
+</div>
 
   <h3>add a comment</h3>
-  <div class="form-group">
     <%= render "/comments/form" %>
-  </div>
   <% if @post_comments %>
   <h3>comments</h3>
       <div id="comments">

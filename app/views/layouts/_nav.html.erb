@@ -9,10 +9,10 @@
         <li class="<%= [about_home_path].include?(request.path) ? 'navlink open' : '' %>"><%= link_to "About".html_safe, about_home_path %></li>
       </ul>
       <ul class="nav navbar-nav">
-        <li class="<%= [categories_path].include?(request.path) ? 'navlink open' : '' %>"><%= link_to "Post".html_safe, categories_path %></li>
+        <li class="<%= [categories_path].include?(request.path) && !@favorite.present? ? 'navlink open' : '' %>"><%= link_to "Posts".html_safe, categories_path %></li>
       </ul>
       <ul class="nav navbar-nav">
-        <li class="<%= [root_path, posts_path, about_home_path].include?(request.path) ? '' : 'navlink open' %>"><%= link_to "New Post".html_safe, new_post_path %></li>
+        <li class="<%= [root_path, posts_path, categories_path, about_home_path].include?(request.path) ? '' : 'navlink open' %>"><%= link_to "New Post".html_safe, new_post_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
@@ -23,6 +23,9 @@
               <li><%= link_to "Log Out", sessions_path, method: :delete %></li>
             </ul>
           </li>
+          <ul class="nav navbar-nav">
+            <li class="<%= @favorite.present? ? 'navlink open' : '' %>"><%= link_to "Your Favorite", categories_path(:favorite => "Favorite")%></li>
+          </ul>
         <% else %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Enter..<span class="caret"></span></a>
@@ -32,9 +35,6 @@
             </ul>
           </li>
         <% end %>
-      <ul class="nav navbar-nav">
-        <li><%= link_to "Your Favorite", categories_path(:favorite => "Favorite")%></li>
-      </ul>
     </div>
   </div>
 </nav>

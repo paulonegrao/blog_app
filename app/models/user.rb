@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :likes, dependent: :nullify
   has_many :liked_posts, through: :likes, source: :post
 
+  has_many :liked_categories, through: :liked_posts, source: :category
+
   def full_name
     "#{first_name} #{last_name}".strip
   end
