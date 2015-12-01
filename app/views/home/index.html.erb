@@ -1,10 +1,12 @@
 <div class="landing-pg">
-  <div class="media-right">
-    <img id="avatar" class="media-object" src="<%= asset_path 'camera1.png' %>" />
-  </div>
-<h1>Welcome to the Blog</h1>
-  <p>Well... this is a Blog app to, let's say... get stuff bloged...</p>
-  <p><% 3.times do %>
+  <div class="media-right container">
+    <img class="media-object" width="100%" src="<%= asset_path 'camera1.png' %>" />
+    <h1>Welcome to the Blog</h1>
+    <p>Well... this is a Blog app to, let's say... get stuff bloged... and I'm
+      just changing colors and formats here to show that this is an 'external'
+       application-layout.</p>
+    <p><% 3.times do %>
       <p><%=  Faker::Lorem.paragraphs(3).join %></p>
     <% end %>
+  </div>
 </div>

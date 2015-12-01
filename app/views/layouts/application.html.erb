@@ -8,8 +8,8 @@
 </head>
 <body>
     <%= render "/layouts/nav" %>
-    <div class="container">
-      <%= notice || alert %>
+    <div id="top-div" class="container">
+      <%= render "/layouts/flash_messages" %>
       <%= yield %>
     </div>
 </body>

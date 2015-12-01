@@ -49,7 +49,7 @@ Liked: <%= pluralize(@post.likes.count, "time") %>
   <h3>add a comment</h3>
     <%= render "/comments/form" %>
   <% if @post_comments %>
-  <h3>comments</h3>
+      <h3>comments</h3>
       <div id="comments">
           <% @post_comments.each do |comment| %>
               <%= render "/comments/comment", comment: comment %>

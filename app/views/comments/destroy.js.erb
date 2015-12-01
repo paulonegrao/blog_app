@@ -1,1 +1,5 @@
 $("#<%= dom_id(@comment) %>").fadeOut(1000, function(){ $(this).remove(); });
+$(".alert").remove();
+<% flash[:notice] = 'Comment deleted successfully' %>
+$("#top-div").prepend("<%= j render '/layouts/flash_messages' %>");
+<% flash[:notice] = nil %>

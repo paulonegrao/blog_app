@@ -2,3 +2,7 @@
 $("#comments").prepend("<%= j(render('/comments/comment', {comment: @comment})) %>");
 <% @comment = Comment.new %>
 $("#new_comment").replaceWith("<%= j render 'form' %>");
+$(".alert").remove();
+<% flash[:notice] = 'Comment created successfully' %>
+$("#top-div").prepend("<%= j render '/layouts/flash_messages' %>");
+<% flash[:notice] = nil %>

@@ -11,8 +11,8 @@
   <div class="container">
     <div class="landing-pg">
       <br>
-      <%= notice || alert %>
-    </div>
+      <%= render "/layouts/flash_messages" %>
+      </div>
     <%= yield %>
   </div>
 </body>

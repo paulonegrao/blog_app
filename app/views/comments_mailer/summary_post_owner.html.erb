@@ -1,6 +1,9 @@
-<p>Hello <%= @owner.full_name %>,</p>
-<p>You've Received a comment to your post.</p>
+<p>Hello <%= @user.first_name %>,</p>
+<p>On <%= date_summary %>you've received comment(s) to your post.</p>
 <p>Post title: <%= @post.title %></p>
-<p>Comment: <%= @comment.body %></p>
+<p>Comment(s):</p>
+  <% @comment_array.each do |c| %>
+      <li><%= "#{c}" %></li><hr>
+  <% end %>
 <p>Regards,</p>
 <p>The Blog Team</p>

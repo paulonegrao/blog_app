@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @post.category  = @category
     @post.user      = current_user
     if @post.save
-      redirect_to categories_path, notice: "Post created successfully"
+      redirect_to post_path(@post), notice: "Post created successfully"
     else
       @category = Category.all
       render :new
