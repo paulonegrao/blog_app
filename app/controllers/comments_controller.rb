@@ -11,8 +11,9 @@ class CommentsController < ApplicationController
 
   def create
     # CommentsSummaryJob(Date.current.yesterday).perform_later
-    target_date = Date.current.yesterday
-    CommentsSummaryJob.perform_later
+
+    target_date = (Date.today - 1).to_s
+    CommentsSummaryJob.perform_later(target_date)
 
     @post = Post.find params[:post_id]
     comment_params = params.require(:comment).permit(:title, :body)
