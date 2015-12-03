@@ -1,0 +1,21 @@
+<div class="well" id="<%= dom_id(comment) %>" >
+    <%= comment.body %>
+    <div class="pull-right">
+      <% if can? :edit, comment %>
+        <%= link_to "Edit", edit_post_comment_path(@post, comment),
+                          class: "btn btn-primary",
+                          data: {disable_with: "Editing..."},
+                          remote: true %>
+      <% end %>
+      <% if can? :destroy, comment %>
+        <%= link_to "Delete", post_comment_path(@post, comment),
+                          method: :delete,
+                          data: {confirm: "Are you sure?", disable_with: "Deleting..."},
+                          class: "btn btn-danger",
+                          remote: true  %>
+      <% end %>
+    </div>
+    <p class="created-by">
+      created by<%= " #{comment.user.first_name} #{comment.user.last_name} " %>
+              in<%= " #{comment.created_at.in_time_zone('Pacific Time (US & Canada)').strftime('%d.%m.%y at %I:%M%p')}" %></p>
+</div>

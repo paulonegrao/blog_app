@@ -27,6 +27,14 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # Mailer Process
+  # config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.default_url_options = { host: "localhost", port: 8080 }
+
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.
   config.assets.digest = true

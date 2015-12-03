@@ -1,0 +1,40 @@
+<nav class="nav navbar-default">
+  <div class="container">
+
+    <div class="row">
+      <ul class="nav navbar-nav">
+        <li class="<%= [root_path, posts_path].include?(request.path) ? 'navlink open' : '' %>"><%= link_to "Home".html_safe, root_path %></li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="<%= [about_home_path].include?(request.path) ? 'navlink open' : '' %>"><%= link_to "About".html_safe, about_home_path %></li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="<%= request.path.include?("categories") && !@favorite.present? ? 'navlink open' : '' %>"><%= link_to "Posts".html_safe, categories_path %></li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="<%= request.path.include?("posts/new")? 'navlink open' : '' %>"><%= link_to "New Post".html_safe, new_post_path %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              Hello <%= current_user.first_name %> <%= current_user.last_name %>! <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Log Out", sessions_path, method: :delete %></li>
+            </ul>
+          </li>
+          <ul class="nav navbar-nav">
+            <li class="<%= @favorite.present? ? 'navlink open' : '' %>"><%= link_to "Your Favorite", categories_path(:favorite => "Favorite")%></li>
+          </ul>
+        <% else %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Enter..<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Sign In", new_session_path %></li>
+              <li><%= link_to "Sign Up", new_user_path %></li>
+            </ul>
+          </li>
+        <% end %>
+    </div>
+  </div>
+</nav>

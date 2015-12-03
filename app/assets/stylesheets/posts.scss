@@ -1,0 +1,118 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.created-by {
+  font-size: 65%;
+  color:rgba(0, 0, 0, 0.39);
+}
+.icon-big {
+  font-size: 25px;
+}
+.label_check_boxes label {
+  margin-left: 5px;
+  margin-right: 25px;
+}
+$bgDefault      : #ecc8ab;
+$bgHighlight    : #f9992e;
+$colDefault     : #ffffff;
+$colHighlight   : #ffffff;
+$dropDown       : false;
+.navbar-default {
+  background-color: $bgDefault;
+  border-color: $bgHighlight;
+  .navbar-brand {
+    color: $colDefault;
+    &:hover, &:focus {
+      color: $colHighlight; }}
+  .navbar-text {
+    color: $colDefault; }
+  .navbar-nav {
+    > li {
+      > a {
+        color: $colDefault;
+        &:hover,  &:focus {
+          color: $colHighlight; }}
+      @if $dropDown {
+        > .dropdown-menu {
+          background-color: $bgDefault;
+          > li > a {
+            color: $colDefault;
+            &:hover,  &:focus {
+              color: $colHighlight;
+              background-color: $bgHighlight; }}
+          .divider {
+            background-color: $bgHighlight;}}}
+    }
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}
+    > .open {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+  .navbar-toggle {
+    border-color: $bgHighlight;
+    &:hover, &:focus {
+      background-color: $bgHighlight; }
+    .icon-bar {
+      background-color: $colDefault; }}
+  .navbar-collapse,
+  .navbar-form {
+    border-color: $colDefault; }
+  .navbar-link {
+    color: $colDefault;
+    &:hover {
+      color: $colHighlight; }}}
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu {
+    > li > a {
+      color: $colDefault;
+      &:hover, &:focus {
+        color: $colHighlight; }}
+    > .active {
+      > a, > a:hover, > a:focus {
+        color: $colHighlight;
+        background-color: $bgHighlight; }}}
+}
+
+///////////////////////////////
+
+
+div.navbar-padding {
+  margin-bottom: 75px;
+}
+
+.flash-box {
+    padding: 15px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.flash-box.warning {
+  border-left: 8px solid #ffd714;
+}
+
+.flash-box.notice {
+  border-left: 8px solid #87cb00;
+}
+
+textarea#post_code  {
+  height: 20em;
+}
+
+.padded {
+  margin: 0.75em;
+}
+
+code {
+}
+
+// Hacks for the navbar popping higher on the mobile media query
+nav.navbar.navbar-default.navbar-fixed-top {
+  height: 52px;
+}
+
+.container-fluid{
+  height: 52px;
+}

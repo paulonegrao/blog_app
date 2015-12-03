@@ -1,0 +1,5 @@
+<h3><%= " #{@favorite} " %> Posts</h3>
+  <% @post.each do |p| %>
+    <h2><%= link_to p.title, post_path(p) %></h2>
+    <hr>
+  <% end %>

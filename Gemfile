@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Use spostgresql as the database for Active Record
+gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -24,7 +24,17 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
+
+#### PROJECT's GEMs ##################################################################################
+gem "font-awesome-rails"
+
+gem 'simple_form'
+
+# Upload files
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -38,6 +48,11 @@ group :development, :test do
   gem "hirb"
   gem "faker"
   gem "awesome_print"
+  gem 'cancancan', '~> 1.10'
+  gem "quiet_assets"
+  gem "letter_opener"
+  gem 'delayed_job_active_record'
+	gem 'delayed_job_web'
 end
 
 group :development do

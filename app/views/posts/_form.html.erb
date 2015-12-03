@@ -1,0 +1,29 @@
+<% if @post.errors.any? %>
+  <div class="alert alert-warning">
+    <p>There were errors in your submission:</p>
+    <p><%= @post.errors.full_messages.join(", ") %></p>
+<% end %>
+<%= form_for @post do |f| %>
+  <div class="form-group">
+    <%= label_tag "category", "category" %>
+    <%= select_tag "selected_category", options_for_select(@category.collect {|c| [c.title, c.id]}, @post.category_id),
+            :selected => params[:option], class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :title, "title" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :body, "body" %>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+  <div class="form-group label_check_boxes">
+    <%= f.collection_check_boxes :tag_ids, Tag.order(:name), :id, :name  %>
+  </div>
+  <div class="form-group">
+    <%= f.label :image, "image" %>
+    <%= f.file_field :image, title: "browse and select the image", class: "form-control", value: "kkk" %>
+  </div>
+
+  <%= f.submit({class: "btn btn-primary"}) %>
+<% end %>

@@ -15,3 +15,9 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore ENV's
+/config/initializers/app_keys.rb
+
+# Uploaded files
+/public/uploads

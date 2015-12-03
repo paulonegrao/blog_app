@@ -1,0 +1,6 @@
+<% @post = @comment.post %>
+$("#<%= dom_id(@comment) %>").replaceWith("<%= j(render('/comments/comment', {comment: @comment})) %>");
+$(".alert").remove();
+<% flash[:notice] = 'Comment updated successfully' %>
+$("#top-div").prepend("<%= j render '/layouts/flash_messages' %>");
+<% flash[:notice] = nil %>

@@ -1,0 +1,11 @@
+<h1>show comment</h1>
+<div>
+<h3><%= @comment.body %></h3>
+</div>
+<% if can? :edit, @p  %>
+  <%= link_to "Edit", edit_comment_path(@comment), class: "btn btn-primary" %>
+<% end %>
+
+<% if can? :destroy, @p  %>
+  <%= link_to "Delete", comment_path(@comment), method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-danger" %>
+<% end %>
